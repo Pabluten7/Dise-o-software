@@ -1,0 +1,110 @@
+digraph Sparrow {
+  graph [rankdir=BT, splines=polyline, nodesep=0.7, ranksep=0.9, fontname="Helvetica", label="Sistema de Archivos Sparrow - Patrón Composite", labelloc=t, fontsize=18, bgcolor=white, pad=0.4];
+  node  [shape=plaintext, fontname="Helvetica", fontsize=11];
+  edge  [fontname="Helvetica", fontsize=10];
+
+  ElementoSparrow [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF8DC">
+    <TR><TD><I>«abstract»</I></TD></TR>
+    <TR><TD><B><I>ElementoSparrow</I></B></TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT"># TamanhoDefinicionKb : double = 1 {const}</TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT"><I>+ Nombre : string {get; set}</I></TD></TR>
+    <TR><TD ALIGN="LEFT"><I>+ Tamanho : double {get}</I></TD></TR>
+    <TR><TD ALIGN="LEFT"><I>+ NumArchivos : int {get}</I></TD></TR>
+    <TR><TD ALIGN="LEFT">+ Contiene(elemento : ElementoSparrow) : bool</TD></TR>
+  </TABLE>>];
+
+  ElementoEnlazable [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#E8F4FF">
+    <TR><TD><I>«abstract»</I></TD></TR>
+    <TR><TD><B><I>ElementoEnlazable</I></B></TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT">- nombre : string</TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT"># ElementoEnlazable(nombre : string)</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Nombre : string {get; set}</TD></TR>
+  </TABLE>>];
+
+  Enlace [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFE8E8">
+    <TR><TD><B>Enlace</B></TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT"> </TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT">+ Enlace(destino : ElementoEnlazable)</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Nombre : string {get; set}</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Tamanho : double {get}</TD></TR>
+    <TR><TD ALIGN="LEFT">+ NumArchivos : int {get}</TD></TR>
+  </TABLE>>];
+
+  Archivo [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#E8FFE8">
+    <TR><TD><B>Archivo</B></TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT">- tamanho : double</TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT">+ Archivo(nombre : string, tamanho : double)</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Tamanho : double {get}</TD></TR>
+    <TR><TD ALIGN="LEFT">+ NumArchivos : int {get}</TD></TR>
+  </TABLE>>];
+
+  ElementoCompuesto [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#E8F4FF">
+    <TR><TD><I>«abstract»</I></TD></TR>
+    <TR><TD><B><I>ElementoCompuesto</I></B></TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT"> </TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT"># ElementoCompuesto(nombre : string)</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Elementos : IReadOnlyList&lt;ElementoSparrow&gt; {get}</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Anhadir(elemento : ElementoSparrow) : void</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Eliminar(elemento : ElementoSparrow) : bool</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Contiene(elemento : ElementoSparrow) : bool</TD></TR>
+    <TR><TD ALIGN="LEFT"># TamanhoContenido() : double</TD></TR>
+    <TR><TD ALIGN="LEFT"># NumArchivosContenido() : int</TD></TR>
+  </TABLE>>];
+
+  Directorio [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#F0F0FF">
+    <TR><TD><B>Directorio</B></TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT"> </TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT">+ Directorio(nombre : string)</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Tamanho : double {get}</TD></TR>
+    <TR><TD ALIGN="LEFT">+ NumArchivos : int {get}</TD></TR>
+  </TABLE>>];
+
+  ArchivoComprimido [label=<
+  <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#F0F0FF">
+    <TR><TD><B>ArchivoComprimido</B></TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT">- FactorCompresion : double = 0.3 {const}</TD></TR>
+    <HR/>
+    <TR><TD ALIGN="LEFT">+ ArchivoComprimido(nombre : string)</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Tamanho : double {get}</TD></TR>
+    <TR><TD ALIGN="LEFT">+ NumArchivos : int {get}</TD></TR>
+  </TABLE>>];
+
+  // Herencia (generalización)
+  edge [arrowhead=empty, style=solid, color=black];
+  ElementoEnlazable -> ElementoSparrow;
+  Enlace -> ElementoSparrow;
+  Archivo -> ElementoEnlazable;
+  ElementoCompuesto -> ElementoEnlazable;
+  Directorio -> ElementoCompuesto;
+  ArchivoComprimido -> ElementoCompuesto;
+
+  // Agregación: rombo en el compuesto, navegable hacia ElementoSparrow
+  ElementoCompuesto:e -> ElementoSparrow:e [dir=both, arrowtail=odiamond, arrowhead=vee, constraint=false,
+      color="#1f4e9e", fontcolor="#1f4e9e", headlabel="-elementos\n0..*", labeldistance=3.5, labelangle=-40];
+
+  // Asociación: un enlace apunta a un único destino enlazable
+  Enlace -> ElementoEnlazable [arrowhead=vee, constraint=false, color="#b02a2a", fontcolor="#b02a2a",
+      headlabel="-destino\n1", labeldistance=3.5, labelangle=35];
+
+  {rank=same; ElementoEnlazable; Enlace;}
+  {rank=same; Archivo; ElementoCompuesto;}
+}

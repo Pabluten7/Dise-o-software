@@ -1,0 +1,11 @@
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\bin\Debug\net10.0\PracticaMixin.deps.json
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\bin\Debug\net10.0\PracticaMixin.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\bin\Debug\net10.0\PracticaMixin.pdb
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\obj\Debug\net10.0\PracticaMixin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\obj\Debug\net10.0\PracticaMixin.AssemblyInfoInputs.cache
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\obj\Debug\net10.0\PracticaMixin.AssemblyInfo.cs
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\obj\Debug\net10.0\PracticaMixin.csproj.CoreCompileInputs.cache
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\obj\Debug\net10.0\PracticaMixin.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\obj\Debug\net10.0\refint\PracticaMixin.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\obj\Debug\net10.0\PracticaMixin.pdb
+C:\Users\HP1\Desktop\Diseño Software\PracticaMixin\PracticaMixin\obj\Debug\net10.0\ref\PracticaMixin.dll

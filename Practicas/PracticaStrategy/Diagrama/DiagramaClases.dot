@@ -1,0 +1,85 @@
+digraph Strategy {
+  graph [rankdir=BT, splines=polyline, nodesep=0.45, ranksep=0.75, fontname="Helvetica", label="Sistema Sparrow - Patrón Strategy e Inversión de Dependencias", labelloc=t, fontsize=18, bgcolor=white, pad=0.4];
+  node  [shape=plaintext, fontname="Helvetica", fontsize=11];
+  edge  [fontname="Helvetica", fontsize=10];
+
+  IVisitanteSparrow [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF0D0">
+    <TR><TD><I>«interface»</I></TD></TR><TR><TD><B>IVisitanteSparrow</B></TD></TR><HR/>
+    <TR><TD ALIGN="LEFT"><I>+ Visitar(...) : string  (x4)</I></TD></TR></TABLE>>];
+
+  VisitanteImpresion [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF8EC">
+    <TR><TD><I>«abstract»</I></TD></TR><TR><TD><B><I>VisitanteImpresion</I></B></TD></TR><HR/>
+    <TR><TD ALIGN="LEFT">- nivel : int</TD></TR><HR/>
+    <TR><TD ALIGN="LEFT"># VisitanteImpresion(estrategia : IEstrategiaVisualizacion)</TD></TR>
+    <TR><TD ALIGN="LEFT" BGCOLOR="#D6F5D6"># Nombre(e : ElementoSparrow) : string</TD></TR>
+    <TR><TD ALIGN="LEFT"># Linea(texto : string) : string</TD></TR>
+    <TR><TD ALIGN="LEFT"># Contenido(c : ElementoCompuesto) : string</TD></TR></TABLE>>];
+
+  VisitanteCompacto [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF8EC">
+    <TR><TD><B>VisitanteCompacto</B></TD></TR><HR/>
+    <TR><TD ALIGN="LEFT">+ VisitanteCompacto(e : IEstrategiaVisualizacion)</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Visitar(...) : string  (x4)</TD></TR></TABLE>>];
+  VisitanteExtendido [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF8EC">
+    <TR><TD><B>VisitanteExtendido</B></TD></TR><HR/>
+    <TR><TD ALIGN="LEFT">+ VisitanteExtendido(e : IEstrategiaVisualizacion)</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Visitar(...) : string  (x4)</TD></TR></TABLE>>];
+
+  SparrowView [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EEEEEE">
+    <TR><TD><B>SparrowView</B></TD></TR><HR/>
+    <TR><TD ALIGN="LEFT">- salida : TextWriter</TD></TR><HR/>
+    <TR><TD ALIGN="LEFT">+ SparrowView(e : IEstrategiaVisualizacion, salida : TextWriter)</TD></TR>
+    <TR><TD ALIGN="LEFT">+ MostrarSistemaSparrow(e : ElementoSparrow) : void</TD></TR></TABLE>>];
+
+  IEstrategia [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#D6F5D6">
+    <TR><TD><I>«interface»</I></TD></TR><TR><TD><B>IEstrategiaVisualizacion</B></TD></TR><HR/>
+    <TR><TD ALIGN="LEFT"><I>+ Adaptar(texto : string) : string</I></TD></TR></TABLE>>];
+
+  Castellano [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EFFFEF">
+    <TR><TD><B>EstrategiaCastellano</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+ Adaptar(texto : string) : string</TD></TR></TABLE>>];
+  Gallega [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EFFFEF">
+    <TR><TD><B>EstrategiaGallega</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+ Adaptar(texto : string) : string</TD></TR></TABLE>>];
+  Catalana [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EFFFEF">
+    <TR><TD><B>EstrategiaCatalana</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+ Adaptar(texto : string) : string</TD></TR></TABLE>>];
+  Internacional [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EFFFEF">
+    <TR><TD><I>«abstract»</I></TD></TR><TR><TD><B><I>EstrategiaInternacional</I></B></TD></TR><HR/>
+    <TR><TD ALIGN="LEFT">- VocalesSinTilde : Dictionary&lt;char, char&gt; {static}</TD></TR><HR/>
+    <TR><TD ALIGN="LEFT"># EstrategiaInternacional(estrategiaEnhe : IEstrategiaVisualizacion)</TD></TR>
+    <TR><TD ALIGN="LEFT">+ Adaptar(texto : string) : string</TD></TR>
+    <TR><TD ALIGN="LEFT">- QuitarTildes(texto : string) : string {static}</TD></TR></TABLE>>];
+  IntGallega [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EFFFEF">
+    <TR><TD><B>EstrategiaInternacionalGallega</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+ EstrategiaInternacionalGallega()</TD></TR></TABLE>>];
+  IntCatalana [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EFFFEF">
+    <TR><TD><B>EstrategiaInternacionalCatalana</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+ EstrategiaInternacionalCatalana()</TD></TR></TABLE>>];
+
+  Program [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#F4F4F4">
+    <TR><TD><B>Program</B></TD></TR><TR><TD><I>(crea las estrategias concretas<BR/>y las inyecta)</I></TD></TR></TABLE>>];
+
+  // Herencia / realización
+  edge [arrowhead=empty, style=solid, color=black];
+  VisitanteCompacto -> VisitanteImpresion;
+  VisitanteExtendido -> VisitanteImpresion;
+  VisitanteImpresion -> IVisitanteSparrow [style=dashed];
+  Castellano -> IEstrategia [style=dashed];
+  Gallega -> IEstrategia [style=dashed];
+  Catalana -> IEstrategia [style=dashed];
+  Internacional -> IEstrategia [style=dashed];
+  IntGallega -> Internacional;
+  IntCatalana -> Internacional;
+
+  // Asociaciones con la estrategia abstracta (la inversión de dependencias)
+  edge [arrowhead=vee, style=solid, color="#1f7a1f", fontcolor="#1f7a1f"];
+  VisitanteImpresion -> IEstrategia [headlabel="-estrategia\n1", labeldistance=3, labelangle=-30, constraint=false];
+  SparrowView -> IEstrategia [headlabel="-estrategia\n1", labeldistance=3, labelangle=30, constraint=false];
+  Internacional -> IEstrategia [headlabel="-estrategiaEnhe\n1", labeldistance=3.5, labelangle=40, constraint=false];
+
+  // Dependencias de uso / creación
+  edge [arrowhead=vee, style=dashed, color="#996600", fontcolor="#996600"];
+  SparrowView -> VisitanteExtendido [label=" «create»"];
+  Program -> Castellano [label=" «create»"];
+  Program -> Gallega;
+  Program -> Catalana;
+  Program -> IntGallega;
+  Program -> IntCatalana;
+
+  {rank=same; VisitanteImpresion; IEstrategia;}
+}

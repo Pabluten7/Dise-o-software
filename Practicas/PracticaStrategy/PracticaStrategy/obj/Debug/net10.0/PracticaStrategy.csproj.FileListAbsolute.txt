@@ -1,0 +1,11 @@
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\bin\Debug\net10.0\PracticaStrategy.deps.json
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\bin\Debug\net10.0\PracticaStrategy.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\bin\Debug\net10.0\PracticaStrategy.pdb
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\obj\Debug\net10.0\PracticaStrategy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\obj\Debug\net10.0\PracticaStrategy.AssemblyInfoInputs.cache
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\obj\Debug\net10.0\PracticaStrategy.AssemblyInfo.cs
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\obj\Debug\net10.0\PracticaStrategy.csproj.CoreCompileInputs.cache
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\obj\Debug\net10.0\PracticaStrategy.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\obj\Debug\net10.0\refint\PracticaStrategy.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\obj\Debug\net10.0\PracticaStrategy.pdb
+C:\Users\HP1\Desktop\Diseño Software\PracticaStrategy\PracticaStrategy\obj\Debug\net10.0\ref\PracticaStrategy.dll

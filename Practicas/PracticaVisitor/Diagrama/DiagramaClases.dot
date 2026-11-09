@@ -1,0 +1,87 @@
+digraph Visitor {
+  graph [rankdir=BT, splines=polyline, nodesep=0.5, ranksep=0.8, fontname="Helvetica", label="Sistema Sparrow - Patrón Visitor", labelloc=t, fontsize=18, bgcolor=white, pad=0.4, newrank=true];
+  node  [shape=plaintext, fontname="Helvetica", fontsize=11];
+  edge  [fontname="Helvetica", fontsize=10];
+
+  subgraph cluster_jerarquia {
+    label="Jerarquía visitable (Composite de la práctica 2)"; style=dashed; color="#888888"; fontsize=12;
+
+    ElementoSparrow [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF8DC">
+      <TR><TD><I>«abstract»</I></TD></TR><TR><TD><B><I>ElementoSparrow</I></B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT"><I>+ Nombre : string {get; set}</I></TD></TR>
+      <TR><TD ALIGN="LEFT"><I>+ Tamanho : double {get}</I></TD></TR>
+      <TR><TD ALIGN="LEFT"><I>+ NumArchivos : int {get}</I></TD></TR>
+      <TR><TD ALIGN="LEFT">+ Contiene(elemento : ElementoSparrow) : bool</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#FFE08A"><I>+ Aceptar(v : IVisitanteSparrow) : string</I></TD></TR>
+    </TABLE>>];
+
+    ElementoEnlazable [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#E8F4FF">
+      <TR><TD><I>«abstract»</I></TD></TR><TR><TD><B><I>ElementoEnlazable</I></B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT">+ Nombre : string {get; set}</TD></TR></TABLE>>];
+
+    ElementoCompuesto [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#E8F4FF">
+      <TR><TD><I>«abstract»</I></TD></TR><TR><TD><B><I>ElementoCompuesto</I></B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT">+ Elementos : IReadOnlyList&lt;ElementoSparrow&gt; {get}</TD></TR>
+      <TR><TD ALIGN="LEFT">+ Anhadir(elemento : ElementoSparrow) : void</TD></TR>
+      <TR><TD ALIGN="LEFT">+ Eliminar(elemento : ElementoSparrow) : bool</TD></TR></TABLE>>];
+
+    Archivo [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#E8FFE8">
+      <TR><TD><B>Archivo</B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#FFE08A">+ Aceptar(v : IVisitanteSparrow) : string</TD></TR></TABLE>>];
+    Directorio [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#F0F0FF">
+      <TR><TD><B>Directorio</B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#FFE08A">+ Aceptar(v : IVisitanteSparrow) : string</TD></TR></TABLE>>];
+    ArchivoComprimido [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#F0F0FF">
+      <TR><TD><B>ArchivoComprimido</B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#FFE08A">+ Aceptar(v : IVisitanteSparrow) : string</TD></TR></TABLE>>];
+    Enlace [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFE8E8">
+      <TR><TD><B>Enlace</B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#FFE08A">+ Aceptar(v : IVisitanteSparrow) : string</TD></TR></TABLE>>];
+  }
+
+  subgraph cluster_visitantes {
+    label="Visitantes (operaciones añadidas sin tocar la jerarquía)"; style=dashed; color="#888888"; fontsize=12;
+
+    IVisitanteSparrow [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF0D0">
+      <TR><TD><I>«interface»</I></TD></TR><TR><TD><B>IVisitanteSparrow</B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT"><I>+ Visitar(a : Archivo) : string</I></TD></TR>
+      <TR><TD ALIGN="LEFT"><I>+ Visitar(d : Directorio) : string</I></TD></TR>
+      <TR><TD ALIGN="LEFT"><I>+ Visitar(c : ArchivoComprimido) : string</I></TD></TR>
+      <TR><TD ALIGN="LEFT"><I>+ Visitar(e : Enlace) : string</I></TD></TR></TABLE>>];
+
+    VisitanteImpresion [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF8EC">
+      <TR><TD><I>«abstract»</I></TD></TR><TR><TD><B><I>VisitanteImpresion</I></B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT">- EspaciosPorNivel : int = 3 {const}</TD></TR>
+      <TR><TD ALIGN="LEFT">- nivel : int</TD></TR><HR/>
+      <TR><TD ALIGN="LEFT"># Linea(texto : string) : string</TD></TR>
+      <TR><TD ALIGN="LEFT"># Contenido(c : ElementoCompuesto) : string</TD></TR></TABLE>>];
+
+    VisitanteCompacto [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF8EC">
+      <TR><TD><B>VisitanteCompacto</B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT">+ Visitar(...) : string  (x4)</TD></TR></TABLE>>];
+    VisitanteExtendido [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#FFF8EC">
+      <TR><TD><B>VisitanteExtendido</B></TD></TR><HR/>
+      <TR><TD ALIGN="LEFT">+ Visitar(...) : string  (x4)</TD></TR></TABLE>>];
+  }
+
+  SparrowView [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" BGCOLOR="#EEEEEE">
+    <TR><TD><B>SparrowView</B></TD></TR><HR/>
+    <TR><TD ALIGN="LEFT">- salida : TextWriter</TD></TR><HR/>
+    <TR><TD ALIGN="LEFT">+ MostrarSistemaSparrow(e : ElementoSparrow) : void</TD></TR></TABLE>>];
+
+  edge [arrowhead=empty, style=solid, color=black];
+  ElementoEnlazable -> ElementoSparrow;
+  Enlace -> ElementoSparrow;
+  Archivo -> ElementoEnlazable;
+  ElementoCompuesto -> ElementoEnlazable;
+  Directorio -> ElementoCompuesto;
+  ArchivoComprimido -> ElementoCompuesto;
+
+  VisitanteCompacto -> VisitanteImpresion;
+  VisitanteExtendido -> VisitanteImpresion;
+  VisitanteImpresion -> IVisitanteSparrow [style=dashed];
+
+  edge [arrowhead=vee, style=dashed, color="#996600", fontcolor="#996600"];
+  ElementoSparrow -> IVisitanteSparrow [label=" «use»", constraint=false];
+  SparrowView -> VisitanteExtendido [label=" «use»"];
+}

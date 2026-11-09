@@ -1,0 +1,11 @@
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\bin\Debug\net10.0\PracticaVisitor.deps.json
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\bin\Debug\net10.0\PracticaVisitor.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\bin\Debug\net10.0\PracticaVisitor.pdb
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\obj\Debug\net10.0\PracticaVisitor.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\obj\Debug\net10.0\PracticaVisitor.AssemblyInfoInputs.cache
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\obj\Debug\net10.0\PracticaVisitor.AssemblyInfo.cs
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\obj\Debug\net10.0\PracticaVisitor.csproj.CoreCompileInputs.cache
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\obj\Debug\net10.0\PracticaVisitor.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\obj\Debug\net10.0\refint\PracticaVisitor.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\obj\Debug\net10.0\PracticaVisitor.pdb
+C:\Users\HP1\Desktop\Diseño Software\PracticaVisitor\PracticaVisitor\obj\Debug\net10.0\ref\PracticaVisitor.dll

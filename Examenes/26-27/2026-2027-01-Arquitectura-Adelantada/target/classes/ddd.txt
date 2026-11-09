@@ -1,0 +1,23 @@
+# Pregunta 1
+
+Candidatura: Es una entidad porque representa una organización o agrupación concreta que participa en el proceso electoral. Aunque su nombre o sus siglas pudieran coincidir con los de otra candidatura, no necesariamente serían intercambiables: cada una tiene una identidad y un ciclo de vida propios, presenta sus listas electorales y puede cambiar sus datos o la persona que la representa sin dejar de ser la misma candidatura. Además, sus listas presentadas constituyen el elemento principal que esta aplicación necesita monitorizar.
+
+ListaCongreso: Es una entidad porque representa una lista electoral concreta presentada al congreso, no solo un conjunto de nombres. Su estado puede cambiar durante el proceso, pero esos cambios deben atribuirse a la misma lista a lo largo del tiempo. No pueden duplicarse sin causar problemas al sistema, porque si tuviésemos duplicados, al añadir un nuevo candidato a una lista podría no añadirse a la otra. Por tanto se trata de elementos con identidad única que debe ser preservada y monitorizada a lo largo del tiempo.  
+
+DatosContactoPersona: Puede ser un Value Object si representa únicamente los datos de contacto asociados a una persona en el contexto de la candidatura, lista o impugnación, y no a la persona como individuo gestionado por el sistema. En el modelo se compone de nombre, apellidos, teléfono y correo electrónico, sin ciclo de vida independiente. Dos instancias con los mismos valores pueden considerarse equivalentes e intercambiarse sin alterar la identidad de la candidatura o de la lista que las contiene. 
+
+#Pregunta 2
+
+Un aggregate estaría formado por ListaElectoral, ListaCongreso, ListaSenado, DatosContacto e Impugnacion, con ListaElectoral como aggregate root. 
+
+ListaCongreso y ListaSenado son clases hijas de ListaElectoral por lo que comparten parte de sus invariantes y ciclos de vida. Los datos de contacto de estas listas tienen su ciclo de vida ligado al de las listas. Impugnacion, por su parte, se registra en el contexto de una lista concreta y su motivación y datos del impugnante solo tienen sentido asociados a ella; su ciclo de vida queda subordinado al de la lista.
+
+ListaElectoral es el aggregate root porque es la entrada para crear, consultar y modificar el agregado, y el único punto desde el que deben hacerse cambios a sus integrantes, estado e impugnaciones. Así puede garantizar las reglas de consistencia de la lista en su conjunto, por ejemplo que sus cambios de estado sean válidos o que no se puedan añadir más senadores a una lista al senado que los permitidos por su circunscripción. 
+
+La candidatura y la circunscripción se relacionan con la lista, pero mantienen su propio ciclo de vida, por lo que no forman parte de este agregado.
+
+# Pregunta 6
+
+Al pasar de la opción Candidaturas a la opción Listas el cliente no recarga la aplicación completa, sino que solicita al servidor únicamente los datos que necesita la nueva pantalla, ya que todas las interfaces por las que se va a desplazar la aplicación se descargan del servidor al acceder a la primera página. 
+
+Las llamadas para recuperar datos serían de lectura. Concretamente, se recuperarían los datos de las circunscripciones para rellenar el desplegable "Circunscripción" (p. ej. Cantabria) y las listas de cada circunscripción con congresistas y senadores.

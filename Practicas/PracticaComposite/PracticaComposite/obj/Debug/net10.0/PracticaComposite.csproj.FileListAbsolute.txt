@@ -1,0 +1,11 @@
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\bin\Debug\net10.0\PracticaComposite.deps.json
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\bin\Debug\net10.0\PracticaComposite.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\bin\Debug\net10.0\PracticaComposite.pdb
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\obj\Debug\net10.0\PracticaComposite.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\obj\Debug\net10.0\PracticaComposite.AssemblyInfoInputs.cache
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\obj\Debug\net10.0\PracticaComposite.AssemblyInfo.cs
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\obj\Debug\net10.0\PracticaComposite.csproj.CoreCompileInputs.cache
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\obj\Debug\net10.0\PracticaComposite.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\obj\Debug\net10.0\refint\PracticaComposite.dll
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\obj\Debug\net10.0\PracticaComposite.pdb
+C:\Users\HP1\Desktop\Diseño Software\PracticaComposite\PracticaComposite\obj\Debug\net10.0\ref\PracticaComposite.dll
